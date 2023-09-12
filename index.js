@@ -6,13 +6,12 @@ const io = require('socket.io')(3000, {
       credentials: true
     }
   })
-console.log('dead')
+
 const users = {}
 
 io.on('connection', socket => {
     // wpp makaiapp 
-    socket.on('wpp-session-on', phoneNumber => {
-        console.log('WPP USER CONNECTED')
+    socket.on('wpp-session-on', phoneNumber => 
         socket.broadcast.emit('wpp-contact-on', phoneNumber)
     })
 
@@ -22,7 +21,6 @@ io.on('connection', socket => {
     
     // general chat app
     socket.on('new-user', name => {
-        console.log('user connected to global chat')
         users[socket.id] = name
         socket.broadcast.emit('user-connected', name)
     })
