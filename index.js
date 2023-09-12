@@ -12,7 +12,7 @@ const users = {}
 
 io.on('connection', socket => {
     // wpp makaiapp 
-    socket.on('wpp-session-on, phoneNumber => {
+    socket.on('wpp-session-on', phoneNumber => {
         users[socket.id] = phoneNumber
         socket.broadcast.emit('wpp-contact-on', phoneNumber)
     })
