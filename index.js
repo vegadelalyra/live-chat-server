@@ -22,6 +22,7 @@ io.on('connection', socket => {
     
     // general chat app
     socket.on('new-user', name => {
+        console.log('user connected to global chat')
         users[socket.id] = name
         socket.broadcast.emit('user-connected', name)
     })
