@@ -7,9 +7,21 @@ const io = require('socket.io')(3000, {
     }
   })
 
+const JSON_SERVER_MAKAIAPP_DB = ''
 const users = {}
 
 io.on('connection', socket => {
+    // wpp makaiapp 
+    socket.on('wpp-session-on, phoneNumber => {
+        users[socket.id] = phoneNumber
+        socket.broadcast.emit('wpp-contact-on', phoneNumber)
+    })
+
+    socket.on('send-wpp-message', (message, receptorPhoneNumber) => {
+        socket.broadcast.emit('wpp-message', { message: message, receptorPhoneNumber: receptorPhoneNumber })
+    })
+    
+    // general chat app
     socket.on('new-user', name => {
         users[socket.id] = name
         socket.broadcast.emit('user-connected', name)
