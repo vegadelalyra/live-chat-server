@@ -6,8 +6,7 @@ const io = require('socket.io')(3000, {
       credentials: true
     }
   })
-
-const JSON_SERVER_MAKAIAPP_DB = ''
+console.log('dead')
 const users = {}
 
 io.on('connection', socket => {
